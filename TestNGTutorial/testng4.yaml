@@ -1,0 +1,23 @@
+name: Loan Department
+threadCount: 2
+parallel: tests
+configFailurePolicy: skip
+parameters: { URL: loancar.com }
+listeners:
+  - tests.Listeners
+tests:
+  - name: Personal loan
+  parallel: tests
+  parameters: { APIKey/username: 123456, URL: qaclickacademy.com }
+  classes:
+    - name: tests.Basics
+      includedMethods:
+        - name: demo
+
+  - name: Car loan
+  parallel: tests
+  classes:
+    - name: tests.LoginApp
+      excludedMethods:
+        - mobile.*
+
